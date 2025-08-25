@@ -21,8 +21,7 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN,
 
 
 #Post a tweet
+tweet = "Hello, world! This is a tweet from Tweepy scheduled at 1pm!"
+response = client.create_tweet(text=tweet)
 
-tweet = "Hello, world! This is a tweet from Tweepy scheduled at 7pm!"
-#response = client.create_tweet(text=tweet)
-
-#print("Tweet posted successfully!", response)
+print("Tweet posted successfully!", response)

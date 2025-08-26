@@ -1,7 +1,6 @@
 import tweepy
 import json
 import random
-from tabnanny import check
 
 # Define our bot's constant variables
 BOT_CONSUMER_KEY = '9ezltcrs4EQ2zRew8AExQWCIU'
@@ -43,10 +42,10 @@ target_user = random.choice(blocked_users)
 with open("tweeted_users.json", 'r+') as file:
     file_data = json.load(file)
 
-    if check in file_data["tweeted_users"]:
-        print("User has already been tweeted.")
-    else:
-        file_data["tweeted_users"].append(target_user)
+    while target_user in file_data["tweeted_users"]:
+        target_user = random.choice(blocked_users)
+    
+    file_data["tweeted_users"].append(target_user)
 
     file.seek(0)
 

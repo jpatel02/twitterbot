@@ -9,12 +9,16 @@ BOT_ACCESS_KEY = '1959370119965986816-R0x7LeYrxQ7zXrVJd26XS6p2ZkSDZu'
 BOT_ACCESS_SECRET = 'co0iavLCQKrgYeguiNl8x1jQm3nWJbtKiu1q9nCHXhr1F'
 BOT_BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAMT03gEAAAAANJGZr9QZYz90tmTTlpdvjAXxJhQ%3DbMMzAkOrBzCvxJIOaHSVlFg3k8tPXtw0L25zwrFPgRlrPwmJqx'
 
-# Define the personal account's constant variables
-CONSUMER_KEY = 'U3iaSk4e0180VP8BhR8RZcRFD'
-CONSUMER_SECRET = '5X7WJpTQsiCzwE599TFjcDBfNXNHDvvI5MiCIyvYP77En8uET4'
-ACCESS_KEY = '464268077-y1uuYwoAjYgJ2Gi4zS3tWY1AwtgdhB4aTWgD8vG4'
-ACCESS_SECRET = 'KaqjfXa8TF4OPL5sw7kjpi6E6qN0LWPIoeqkXtwVR4k2k'
-BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAADAD3wEAAAAAmatjMKRMyGuLLcV5Z1pDrKhY0Ks%3DjspHAMvLHwqkm9JraOFqzEVryehz8BiO5ghAScEInJb0tl1gEO'
+# Define the personal account's constant variables by reading the API keys from the encrypted text file
+api_file = open("blocklist_api_keys.txt", "r")
+file = api_file.readlines()
+api_file.close()
+
+ACCESS_KEY = file[0][14:64]
+ACCESS_SECRET = file[1][21:66]
+BEARER_TOKEN = file[2][14:126]
+CONSUMER_KEY = file[3][9:34]
+CONSUMER_SECRET = file[4][16:66]
 
 # Authenticate to Twitter using OAuth 2.0 Bearer Token
 client_bot = tweepy.Client(bearer_token=BOT_BEARER_TOKEN,
@@ -51,7 +55,7 @@ with open("tweeted_users.json", 'r+') as file:
 
     json.dump(file_data, file, indent=4)
 
-#Posting the tweet
+# Posting the tweet
 tweet = "The toxic user of the day is @" + target_user + "."
 response2 = client_bot.create_tweet(text=tweet)
 

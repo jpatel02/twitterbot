@@ -208,3 +208,4 @@ __marimo__/
 /.blackbox/pubring.gpg~
 /.blackbox/pubring.kbx~
 /.blackbox/secring.gpg
+/blocklist_api_keys.txt

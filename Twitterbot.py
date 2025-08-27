@@ -1,6 +1,7 @@
 import tweepy
 import json
 import random
+import sys
 
 # Define our bot's constant variables
 BOT_CONSUMER_KEY = '9ezltcrs4EQ2zRew8AExQWCIU'
@@ -60,3 +61,5 @@ tweet = "The toxic user of the day is @" + target_user + "."
 response2 = client_bot.create_tweet(text=tweet)
 
 print("Tweet posted successfully!", response2)
+
+sys.exit(0)
